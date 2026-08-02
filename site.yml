@@ -1,0 +1,7 @@
+---
+- name: install webserver
+  hosts: role_webserver
+  vars_files:
+    - ansible_user.yml
+  roles:
+    - webserver

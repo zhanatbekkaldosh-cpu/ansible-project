@@ -1,0 +1,30 @@
+---
+- name: install httpd and firewalld
+  ansible.builtin.dnf:
+    name:
+      - httpd
+      - firewalld
+    state: present
+
+- name: enable httpd and firrewalld
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop:
+    - httpd
+    - firewalld
+
+- name: enable httpd on firewalld
+  ansible.posix.firewalld:
+    name: http
+    state: enabled
+    permanent: true
+    immediate: yes
+
+- name: index.html
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+
+
