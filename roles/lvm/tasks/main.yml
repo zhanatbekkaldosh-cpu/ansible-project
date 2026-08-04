@@ -1,0 +1,18 @@
+---
+- name: Create Physical Volume and Volume Group
+  community.general.lvg:
+    vg: vg_data
+    pvs: /dev/sdb
+    state: present
+
+- name: Create Logical Volume
+  community.general.lvol:
+    vg: vg_data
+    lv: lv_storage
+    size: 5g
+    state: present
+
+- name: Format the Logical Volume with ext4
+  ansible.builtin.filesystem:
+    fstype: ext4
+    dev: /dev/vg_data/lv_storage
