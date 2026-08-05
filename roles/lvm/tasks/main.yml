@@ -1,8 +1,13 @@
 ---
+- name: install lvm2
+  ansible.builtin.dnf:
+    name: lvm2
+    state: present
+    
 - name: Create Physical Volume and Volume Group
   community.general.lvg:
     vg: vg_data
-    pvs: /dev/sdb
+    pvs: /dev/nvme1n1
     state: present
 
 - name: Create Logical Volume
