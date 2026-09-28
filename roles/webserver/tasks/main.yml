@@ -4,6 +4,7 @@
     name:
       - httpd
       - firewalld
+      - postgresql16
     state: present
 
 - name: enable httpd and firrewalld
