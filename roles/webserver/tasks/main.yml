@@ -1,5 +1,5 @@
 ---
-- name: install httpd and firewalld
+- name: install postgresql, httpd and firewalld
   ansible.builtin.dnf:
     name:
       - httpd
